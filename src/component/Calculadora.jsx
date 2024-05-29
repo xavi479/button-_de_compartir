@@ -1,55 +1,78 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-function MultiplicationButton() {
-  const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
-  const [product, setProduct] = useState(0);
+function Calculadora() {
+  const [num1, setNum1] = useState('');
+  const [num2, setNum2] = useState('');
+  const [resultado, setResultado] = useState(null);
 
-  const handleNum1Change = (event) => {
-    setNum1(parseInt(event.target.value));
-  };
+  const handleOperacion = (operacion) => {
+    const numero1 = parseFloat(num1);
+    const numero2 = parseFloat(num2);
+    let resultado = 0;
 
-  const handleNum2Change = (event) => {
-    setNum2(parseInt(event.target.value));
-  };
+    if (isNaN(numero1) || isNaN(numero2)) {
+      setResultado('Por favor ingrese números válidos');
+      return;
+    }
 
-  const handleMultiply = () => {
-    setProduct(num1 * num2);
+    switch (operacion) {
+      case 'sumar':
+        resultado = numero1 + numero2;
+        break;
+      case 'restar':
+        resultado = numero1 - numero2;
+        break;
+      case 'multiplicar':
+        resultado = numero1 * numero2;
+        break;
+      case 'dividir':
+        if (numero2 === 0) {
+          setResultado('No se puede dividir por 0');
+          return;
+        }
+        resultado = numero1 / numero2;
+        break;
+      default:
+        break;
+    }
+
+    setResultado(resultado);
   };
 
   return (
     <div>
-      <h3> Multiplicar </h3>
-      <input type="number" value={num1} onChange={handleNum1Change} />
-      <input type="number" value={num2} onChange={handleNum2Change} />
-      <button onClick={handleMultiply}>Multiply</button>
-      <p>Product: {product}</p>
-    </div>
-  );
-}
-
-const Calculadora = () => {
-  const numberOneRef = useRef(null);
-  const numberTwoRef = useRef(null);
-  const [suma, setSuma] = useState(0);
-
-  const handleSuma = () => {
-    setSuma(+numberOneRef.current.value + +numberTwoRef.current.value);
-  };
-
-  return (
-    <div className='App'>
-      <h2>Calculadora</h2>
-      <h3> Suma </h3>
-      <label>Number 1</label>
-      <input type="number" placeholder="numero 1" name="numero1" ref={numberOneRef} />
-      <label>Number 2</label>
-      <input type="number" placeholder="numero 2" name="numero2" ref={numberTwoRef} />
-      <button className='btn btn-success' onClick={handleSuma}>Sumar</button>
-      <br/>
-      Resultado: {suma}
-      
-      <MultiplicationButton />
+      <h1>Calculadora</h1>
+      <div>
+        <label>
+          Número 1:
+          <input
+            type="text"
+            value={num1}
+            onChange={(e) => setNum1(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Número 2:
+          <input
+            type="text"
+            value={num2}
+            onChange={(e) => setNum2(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <button onClick={() => handleOperacion('sumar')}>Sumar</button>
+        <button onClick={() => handleOperacion('restar')}>Restar</button>
+        <button onClick={() => handleOperacion('multiplicar')}>Multiplicar</button>
+        <button onClick={() => handleOperacion('dividir')}>Dividir</button>
+      </div>
+      {resultado !== null && (
+        <div>
+          <h2>Resultado: {resultado}</h2>
+        </div>
+      )}
     </div>
   );
 }

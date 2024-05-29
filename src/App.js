@@ -1,9 +1,14 @@
+import React from 'react';
 import './App.css';
 import Calculadora from './component/Calculadora';
 
 function App() {
   return (
-    <Calculadora />
+    <div className="App">
+      <header className="App-header">
+        <Calculadora />
+      </header>
+    </div>
   );
 }
 

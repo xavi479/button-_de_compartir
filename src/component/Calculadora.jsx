@@ -39,7 +39,7 @@ function Calculadora() {
         break;
        case 'raíz':
         if (numero1 < 0){
-          setResultado('No se puede calcular la raíz cuadrada de un númenro negativo');
+          setResultado('No se puede calcular la raíz cuadrada de un número negativo');
           return
         }
         resultado = Math.sqrt(numero1);

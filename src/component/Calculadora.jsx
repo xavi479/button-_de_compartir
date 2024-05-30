@@ -30,7 +30,22 @@ function Calculadora() {
           setResultado('No se puede dividir por 0');
           return;
         }
-        resultado = numero1 / numero2;
+       resultado = numero1 / numero2;
+
+      break;
+
+       case 'pontenciar':
+        resultado = Math.pow(numero1, numero2);
+        break;
+       case 'raíz':
+        if (numero1 < 0){
+          setResultado('No se puede calcular la raíz cuadrada de un númenro negativo');
+          return
+        }
+        resultado = Math.sqrt(numero1);
+        break;
+      case 'modulo':
+        resultado= numero1 % numero2;
         break;
       default:
         break;
@@ -67,6 +82,9 @@ function Calculadora() {
         <button onClick={() => handleOperacion('restar')}>Restar</button>
         <button onClick={() => handleOperacion('multiplicar')}>Multiplicar</button>
         <button onClick={() => handleOperacion('dividir')}>Dividir</button>
+        <button onClick={() => handleOperacion ('potenciar')}>Potenciación</button> 
+        <button onClick={() => handleOperacion ('raíz')}>Raíz</button> 
+        <button onClick={() => handleOperacion ('módulo')}>Módulo</button> 
       </div>
       {resultado !== null && (
         <div>

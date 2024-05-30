@@ -14,7 +14,6 @@
 }
 
 .calculadora {
-  background: #3b3b3b;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -41,7 +40,7 @@ label {
 input {
   width: calc(100% - 10px);
   padding: 10px;
-  border: 2px solid #61dafb;
+  border: 2px solid #dc61fb;
   border-radius: 5px;
   font-size: 18px;
 }
@@ -51,7 +50,7 @@ input {
 }
 
 button {
-  background-color: #61dafb;
+  background-color: #a461fb;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -63,7 +62,7 @@ button {
 }
 
 button:hover {
-  background-color: #21a1f1;
+  background-color: #f17421;
 }
 
 .resultado {
